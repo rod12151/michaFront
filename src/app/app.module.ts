@@ -13,6 +13,14 @@ import { InfoComponent } from './page/info/info.component';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 
+
+
+
+
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,

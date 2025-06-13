@@ -1,0 +1,41 @@
+<div class="layout-sidebar" [ngClass]="{'active': active}">
+  <a [routerLink]="['/eleccion/proceso']" class="logo">
+    <img alt="logo" src="../../../assets/components/images/logogrande.jpg" width="200" class="w-full" />
+  </a>
+  <div class="layout-sidebar-filter p-fluid p-input-filled fondo">
+    <!--    <p-autoComplete [group]="true" [(ngModel)]="selectedRoute" [minLength]="2" [suggestions]="filteredRoutes" scrollHeight="300px" (onSelect)="onSelect($event)" placeholder="Search by name..." (completeMethod)="filterGroupedRoute($event)" field="label">-->
+    <!--    </p-autoComplete>-->
+  </div>
+  <div class="layout-menu">
+
+    <div class="menu-category">Elecciones</div>
+    <div class="menu-items">
+      <a [routerLink]=" ['/eleccion/proceso']" routerLinkActive="router-link-exact-active">Proceso electorales</a>
+      <a [routerLink]=" ['/eleccion/lista']" routerLinkActive="router-link-exact-active">Lista</a>
+      <a [routerLink]=" ['/eleccion/agencia']" routerLinkActive="router-link-exact-active">Agencia</a>
+      <a [routerLink]=" ['/eleccion/socio']" routerLinkActive="router-link-exact-active">Socio</a>
+      
+
+
+    </div>
+
+    <div class="menu-category" *ngIf="role=='ADMIN'">Gestion de usuarios</div>
+    <div class="menu-items" *ngIf="role=='ADMIN'">
+      <a [routerLink]=" ['/usuario/listar']" routerLinkActive="router-link-exact-active">Listar usuario</a>
+      <a [routerLink]=" ['/usuario/crear']" routerLinkActive="router-link-exact-active">Crear usuario</a>
+
+    </div>
+    
+
+    <!--    <div class="menu-category">Directives</div>-->
+    <!--    <div class="menu-items">-->
+    <!--      <a [routerLink]=" ['/defer']" routerLinkActive="router-link-exact-active">Defer</a>-->
+    <!--      <a [routerLink]=" ['/focustrap']" routerLinkActive="router-link-exact-active">FocusTrap</a>-->
+    <!--      <a [routerLink]=" ['/styleclass']" routerLinkActive="router-link-exact-active">StyleClass <span class="p-tag">New</span></a>-->
+    <!--      <a [routerLink]=" ['/ripple']" routerLinkActive="router-link-exact-active">Ripple</a>-->
+    <!--    </div>-->
+
+
+
+  </div>
+</div>

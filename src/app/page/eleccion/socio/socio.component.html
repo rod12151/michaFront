@@ -1,0 +1,55 @@
+<div class="card">
+  <p-toast></p-toast>
+  <p-confirmDialog header="Confimacion" acceptLabel="Si" rejectLabel="Cancelar" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+  <p-panel header="Socios">
+    <p-toolbar >
+      <ng-template pTemplate="left">
+        <button pButton pRipple label="Nuevo" routerLink="nuevo"  icon="pi pi-plus" class="p-button-success mr-2" ></button>
+      </ng-template>
+    </p-toolbar>
+    <p-table [value]="socios" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido Paterno</th>
+          <th>Apellido Materno</th>
+          <th>DNI</th>
+          <th>Sexo</th>
+          <th>Fecha Nacimiento</th>
+          <th>Agencia</th>
+          <th>Fecha Ingreso</th>
+          <th>Saldo Aporte</th>
+          <th>Operaciones</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-socio>
+        <tr [pSelectableRow]="socio">
+          <td>{{socio.id}}</td>
+          <td>{{socio.persona.nombre}}</td>
+          <td>{{socio.persona.apellidoPaterno}}</td>
+          <td>{{socio.persona.apellidoMaterno}}</td>
+          <td>{{socio.persona.dni}}</td>
+          <td>{{socio.persona.sexo}}</td>
+          <td>{{socio.persona.fechaNacimiento | date: 'shortDate'}}</td>
+          <td>{{socio.agencia.nombreAgencia}}</td>
+          <td>{{socio.fechaIngreso  | date: 'shortDate'}}</td>
+          <td>{{socio.saldoAporte}}</td>
+          <td>
+
+            <button pButton pRipple type="button"  icon="pi pi-pencil" class="p-button-rounded p-button-warning " (click)="editarSocio(socio)"></button>
+            <button pButton pRipple type="button"  icon="pi pi-trash"class="p-button-rounded p-button-danger " (click)="eliminarSocio(socio)"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft">
+        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+      </ng-template>
+      <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+      </ng-template>
+    </p-table>
+  </p-panel>
+</div>
+

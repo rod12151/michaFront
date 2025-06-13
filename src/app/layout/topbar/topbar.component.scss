@@ -1,0 +1,14 @@
+.fondo{
+  background-color: #006633;
+}
+
+.layout-topbar{
+  background: #006633;
+  a {
+    color: white;
+  }
+}
+
+.layout-topbar .topbar-menu > li.topbar-submenu > ul {
+  width: 100px;
+}

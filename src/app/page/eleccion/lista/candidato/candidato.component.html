@@ -1,0 +1,114 @@
+<div class="ui-g">
+  <p-toast></p-toast>
+  <p-confirmDialog header="Confirmación" acceptLabel="Sí" rejectLabel="Cancelar"
+    icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+  <p-panel header="Candidatos">
+    <p-toolbar>
+      <ng-template pTemplate="left">
+        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2"
+          (click)="showSaveDialog(false)"></button>
+        <button pButton pRipple label="Editar" icon="pi pi-pencil" class="p-button-warning mr-2"
+          (click)="showSaveDialog(true)" [disabled]="!candidatoESelected.id"></button>
+        <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger  mr-2" (click)="delete()"
+          [disabled]="!candidatoESelected.id"></button>
+      </ng-template>
+    </p-toolbar>
+
+    <p-table [value]="candidatos" [columns]="cols" selectionMode="single" [(selection)]="candidatoESelected"
+      dataKey="id" [paginator]="true" [rows]="5">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns" pSortableColumn="col.field">
+            {{ col.header }}
+            <p-sortIcon field="col.field"></p-sortIcon>
+          </th>
+          <th>Socio</th>
+          <th>Cargo</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-lista let-columns="columns">
+        <tr [pSelectableRow]="lista">
+          <td *ngFor="let col of columns">
+            {{ lista[col.field] }}
+          </td>
+          <td>
+            {{ lista.socio.persona.fullnombre }}
+          </td>
+          <td>
+            {{ lista.cargo }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-panel>
+
+  <p-dialog header="Candidato" [(visible)]="displaySaveDialog" [modal]="true" [style]="{ width: '500px' }">
+    <div class="ui-g ui-fluid">
+      <div class="p-field p-col-12 md-4 mr-2">
+        <div class="ui-g-4">
+          <label for="id">ID</label>
+        </div>
+        <div class="ui-g-8">
+          <input pInputText id="id" [disabled]="true" [(ngModel)]="candidato.id" />
+        </div>
+      </div>
+
+      <div class="p-field p-col-12 md-4 mr-2">
+        <div class="ui-g-4">
+          <label for="calendar">Socio</label>
+        </div>
+        <div class="ui-g-8">
+          <p-autoComplete [(ngModel)]="candidato.socio" id="calendar" [showEmptyMessage]="true"
+            [suggestions]="filteredSocios" (completeMethod)="filterPersona($event)" field="persona.fullnombre"
+            [minLength]="1"></p-autoComplete>
+        </div>
+      </div>
+
+      <div class="combobox">
+  <!-- Campo de texto que muestra la opción seleccionada -->
+  <input
+    type="text"
+    class="combobox-input"
+    [value]="selectedValue || ''"
+    (click)="toggleDropdown()"
+    placeholder="Cargo"
+    readonly
+  >
+
+  <!-- Lista desplegable de opciones -->
+  <div class="combobox-options" *ngIf="isOpen">
+    <div
+      class="combobox-option"
+      *ngFor="let option of options"
+      (click)="selectOption(option)"
+    >
+      {{ option }}
+    </div>
+  </div>
+</div>
+
+<!-- Muestra el valor seleccionado debajo del combobox -->
+<div  *ngIf="selectedValue" style="margin-top: 10px;">
+  
+</div>
+
+      <div class="p-field p-col-12 md-4 mr-2">
+        <div class="ui-g-4">
+          <label for="evaluacion">Evaluación</label>
+        </div>
+        <div class="p-field-checkbox">
+          <p-checkbox id="evaluacion" [(ngModel)]="candidato.evaluacion" [binary]="true"
+            class="mr-2"></p-checkbox>
+          <label for="evaluacion">{{ candidato.evaluacion }}</label>
+        </div>
+      </div>
+    </div>
+
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clarfix">
+        <button type="button" pButton icon="pi pi-check" (click)="save()" label="Guardar"></button>
+      </div>
+    </p-footer>
+  </p-dialog>
+</div>

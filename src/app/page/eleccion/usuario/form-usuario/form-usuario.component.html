@@ -1,0 +1,60 @@
+
+
+
+<div class="field grid pl-8 pt-3">
+<!--  <label for="id" class="col-fixed">ID</label>-->
+<!--  <input id="id" pInputText type="text" class="inputfield " [(ngModel)]="usuario.id" disabled>-->
+  <span class="p-float-label">
+    <input type="text" id="inputtext3" pInputText [(ngModel)]="usuario.id" disabled >
+    <label for="inputtext3">ID</label>
+  </span>
+</div> <br>
+
+<div class="field grid pl-8 pt-2">
+
+  <div class="p-field col-2 p-md-4 mr-2">
+        <span class="p-float-label">
+            <input type="text" id="inputtext" pInputText [(ngModel)]="usuario.nombres" class="w-full">
+            <label for="inputtext">Nombres</label>
+        </span>
+  </div>
+
+</div>
+<div class="field grid pl-8 pt-2">
+  <div class="p-field col-2 p-md-4 mr-2">
+        <span class="p-float-label">
+            <input type="text" id="inputtext2" pInputText [(ngModel)]="usuario.apellidos" class="w-full" >
+            <label for="inputtext2">Apéllidos</label>
+        </span>
+  </div>
+</div>
+<div class="field grid pl-8 pt-2">
+  <div class="p-field col-2 p-md-4 mr-2">
+        <span class="p-float-label">
+            <input type="email" id="inputtext4" pInputText [(ngModel)]="usuario.email" class="w-full" >
+            <label for="inputtext4">Email</label>
+        </span>
+  </div>
+</div>
+
+<div class="field grid pl-8 pt-2">
+  <div class="p-field col-2 p-md-4 mr-2 ">
+        <span class="p-float-label">
+<!--            <input type="email" id="inputtext4" pInputText [(ngModel)]="usuario.email" class="w-full" >-->
+            <p-dropdown [options]="opcion" [(ngModel)]="usuario.rol" placeholder="Rol" optionLabel="name" optionValue="code" class="w-full2" [showClear]="true"></p-dropdown>
+            <label for="inputtext4">Rol</label>
+        </span>
+  </div>
+</div>
+
+<div class="field grid pl-8 pt-2 mb-4">
+  <div class="p-field col-2 p-md-4 mr-2">
+        <span class="p-float-label">
+<!--            <input type="email" id="inputtext5" pInputText [(ngModel)]="usuario.passwordPlain" class="w-full" >-->
+            <p-password id="inputtext5" [(ngModel)]="usuario.passwordPlain" [toggleMask]="true" class="w-full2"></p-password>
+            <label for="inputtext5">Password</label>
+        </span>
+  </div>
+</div>
+
+<button pButton pRipple label="Guardar" icon="pi pi-save" class="p-button-success mr-2 ml-8" (click)="guardar()" ></button>

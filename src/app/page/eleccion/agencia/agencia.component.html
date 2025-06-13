@@ -1,0 +1,61 @@
+<div class="ui-g">
+  <p-toast></p-toast>
+  <p-confirmDialog header="Confimacion" acceptLabel="Si" rejectLabel="Cancelar" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+  <p-panel header="Agencias" >
+    <p-toolbar >
+      <ng-template pTemplate="left">
+        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" (click)="showSaveDialog(false)" ></button>
+        <button pButton pRipple label="Editar" icon="pi pi-pencil" class="p-button-warning mr-2" (click)="showSaveDialog(true)" [disabled]="!agenciaESelected.id" ></button>
+        <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger  mr-2" (click)="delete()" [disabled]="!agenciaESelected.id"></button>
+      </ng-template>
+    </p-toolbar>
+
+    <p-table [value]="agencias" [columns] ="cols"  selectionMode="single" [(selection)]="agenciaESelected" dataKey="id" [paginator]="true"
+             [rows]="5">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns"  pSortableColumn="col.field">
+            {{col.header}}
+            <p-sortIcon field="col.field"></p-sortIcon>
+          </th>
+
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-agencia let-columns="columns">
+        <tr [pSelectableRow]="agencia">
+          <td *ngFor="let col of columns">
+            {{agencia[col.field]}}
+          </td>
+
+
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-panel>
+
+  <p-dialog header="Agencias" [responsive]="true"  [(visible)]="displaySaveDialog" [modal]="true">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12">
+        <div class="ui-g-4">
+          <label for="id">ID</label>
+        </div>
+        <div class="ui-g-8">
+          <input pInputText id="id" [disabled]="true"  [(ngModel)]="agencia.id"  >
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <div class="ui-g-4">
+          <label for="nombreAgencia">Nombre</label>
+        </div>
+        <div class="ui-g-8">
+          <input pInputText id="nombreAgencia" [(ngModel)]="agencia.nombreAgencia"  >
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clarfix">
+        <button type="button" pButton icon="pi pi-check" (click)="save()" label="Guardar"></button>
+      </div>
+    </p-footer>
+  </p-dialog>
+</div>

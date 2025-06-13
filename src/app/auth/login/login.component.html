@@ -1,0 +1,53 @@
+
+
+<div class="p-8">
+  <p-toast></p-toast>
+  <p-card header="" class="p-8">
+    <form autocomplete="off" [formGroup]="form" (ngSubmit)="login()">
+      <div class="flex flex-column card-container ">
+
+        <div class="card">
+          <div class="flex justify-content-center flex-wrap card-container yellow-container">
+            <h2>Iniciar sesion</h2>
+          </div>
+
+
+          <div class="flex justify-content-center flex-wrap card-container yellow-container">
+            <div class="field col-12 md:col-2 sm:col-2 pb-2" >
+              <span class="p-float-label w-full">
+                <input id="username2"  formControlName="email" pInputText  />
+                <label for="username2">Usuario</label>
+              </span>
+              <small id="username2-help" class="flex align-items-center p-error" *ngIf="form.controls['email'].hasError('required')" >Este campo es obligatorio.</small>
+              <small id="username3-help" class=" flex align-items-center p-error" *ngIf="form.controls['email'].hasError('email')" >Correo electronico .</small>
+            </div>
+
+          </div>
+
+          <div class="flex justify-content-center flex-wrap card-container yellow-container">
+            <div class="field col-12 md:col-2 sm:col-2 pb-2" >
+              <span class="p-float-label w-full">
+                <p-password id="password2"  formControlName="password" [toggleMask]="true" ></p-password>
+                <label for="password2">Contraseña</label>
+              </span>
+              <small id="username4-help" class="flex flex-column card-container p-error" *ngIf="form.controls['password'].hasError('required')">Este campo es obligatorio</small>
+            </div>
+
+          </div>
+
+        </div>
+
+<!--        <div *ngIf="error" class="alert-error mt-2">-->
+<!--          <h3> El usuario o contraseña no son correctos.</h3>-->
+<!--        </div>-->
+
+        <p-button class="flex align-items-center justify-content-center h-4rem" type="submit" label="Ingresar"></p-button>
+      </div>
+    </form>
+
+  </p-card>
+</div>
+
+
+
+

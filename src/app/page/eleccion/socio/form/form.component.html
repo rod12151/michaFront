@@ -1,0 +1,83 @@
+
+<div class="field">
+  <label for="id" class="col-fixed">ID</label>
+  <input id="id" pInputText type="text" class="inputfield " [(ngModel)]="socio.id" disabled>
+</div> <br>
+
+<div class="formgrid grid">
+
+  <div class="p-field p-col-12 p-md-4 mr-2">
+        <span class="p-float-label">
+            <p-calendar [(ngModel)]="socio.fechaIngreso" id= "fecIngreso" [showIcon]="true" inputId="fecIngreso"  dateFormat="mm-dd-yy" [showTime]="true"></p-calendar>
+            <label for="fecIngreso">Fecha Ingreso </label>
+        </span>
+  </div>
+
+
+  <div class="p-field p-col-12 p-md-4 mr-2">
+        <span class="p-float-label">
+            <input type="number" id="inputtext" pInputText [(ngModel)]="socio.saldoAporte" >
+            <label for="inputtext">saldo Aporte </label>
+        </span>
+  </div>
+
+  <div class="p-field p-col-12 md-4 mr-2">
+        <span class="p-float-label">
+            <p-autoComplete [(ngModel)]="socio.agencia"
+                            [showEmptyMessage]="true" [suggestions]="filteredAgencias"
+                            (completeMethod)="filterAgencia($event)" field="nombreAgencia" [minLength]="1" id="calendar2"></p-autoComplete>
+            <label for="calendar2">Agencia</label>
+        </span>
+  </div>
+
+</div> <br>
+
+<div class="formgrid grid">
+
+  <div class="p-field p-col-12 md-4 mr-2">
+        <span class="p-float-label">
+            <input type="text" id="nombre" pInputText [(ngModel)]="persona!.nombre">
+            <label for="nombre">Nombre </label>
+        </span>
+  </div>
+
+  <div class="p-field p-col-12 md-4 mr-2">
+        <span class="p-float-label">
+            <input type="text" id="apPterno" pInputText [(ngModel)]="persona.apellidoPaterno">
+            <label for="apPterno">Apellido Paterno </label>
+        </span>
+  </div>
+
+  <div class="p-field p-col-12 md-4 mr-2">
+        <span class="p-float-label">
+            <input type="text" id="apeMaterno" pInputText [(ngModel)]="persona.apellidoMaterno" >
+            <label for="apeMaterno">Apellido Materno  </label>
+        </span>
+  </div>
+
+  <div class="p-field p-col-12 mr-2 p-lg-4">
+        <span class="p-float-label">
+            <p-inputMask mask="99999999" [(ngModel)]="persona.dni" id="dni" ></p-inputMask>
+            <label for="dni">DNI</label>
+        </span>
+  </div>
+
+
+  <div class="p-field p-col-12 md-4 mr-2">
+        <span class="p-float-label">
+            <p-dropdown id="sexo" [options]="sexos" [(ngModel)]="persona.sexo" optionLabel="nombre" optionValue="codigo"  placeholder="G" [showClear]="true"></p-dropdown>
+            <label for="sexo">Genero</label>
+        </span>
+  </div>
+
+
+  <div class="p-field p-col-12 p-md-4 mr-2">
+        <span class="p-float-label">
+            <p-calendar id="fecnacimiento" [(ngModel)]="persona.fechaNacimiento" [showIcon]="true" inputId="fecNacimiento"></p-calendar>
+            <label for="fecNacimiento">Fecha Nacimiento </label>
+        </span>
+  </div>
+
+</div>
+<br>
+<button pButton pRipple label="Guardar" icon="pi pi-save" class="p-button-success mr-2" (click)="guardar()" ></button>

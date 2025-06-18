@@ -16,7 +16,7 @@
     </p-toolbar>
 
     <p-table [value]="candidatos" [columns]="cols" selectionMode="single" [(selection)]="candidatoESelected"
-      dataKey="id" [paginator]="true" [rows]="5">
+      dataKey="id" [paginator]="true" [rows]="10">
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th *ngFor="let col of columns" pSortableColumn="col.field">

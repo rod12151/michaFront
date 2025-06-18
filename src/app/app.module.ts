@@ -12,6 +12,7 @@ import {ErrorInterceptor} from "./auth/helpers/error.interceptor";
 import { InfoComponent } from './page/info/info.component';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
+import { CardModule } from 'primeng/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { DropdownModule } from 'primeng/dropdown';
     AppRoutingModule,
     AccordionModule,
     FormsModule,
-    DropdownModule
+    DropdownModule,
+    CardModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor },

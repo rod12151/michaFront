@@ -24,12 +24,15 @@ import { CandidatoComponent } from './candidato/candidato.component';
 import {CandidatoService} from "../../service/candidato.service";
 import {SocioService} from "../../service/socio.service";
 import {CheckboxModule} from "primeng/checkbox";
+import { PropuestaComponent } from './propuesta/propuesta.component';
+import { PropuestaServiceService } from '../../service/propuesta-service.service';
 
 
 @NgModule({
   declarations: [
     ListaComponent,
-    CandidatoComponent
+    CandidatoComponent,
+    PropuestaComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +58,8 @@ import {CheckboxModule} from "primeng/checkbox";
     ProcesoElectoralService,
     CandidatoService,
     SocioService,
-    AssetService
+    AssetService,
+    PropuestaServiceService
   ]
 })
 export class ListaModule { }

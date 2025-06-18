@@ -22,6 +22,9 @@
 
 
   <ul #topbarMenu class="topbar-menu">
+    <li class="topbar-submenu"> 
+      <a  [routerLink]=" ['/info']" routerLinkActive="router-link-exact-active" > <b> Pagina Inicio</b> </a>
+    </li>
 
     <li class="topbar-submenu">
       <a tabindex="0" (click)="showOption()" >Hola <b>{{authService.getName()}} <i class="fas fa-angle-down"></i></b></a>

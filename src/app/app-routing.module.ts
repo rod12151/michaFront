@@ -19,7 +19,9 @@ const routes: Routes = [
     path:'info',
     component:InfoComponent
 
-  }
+  },
+  
+
 ];
 
 @NgModule({

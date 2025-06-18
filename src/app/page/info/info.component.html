@@ -1,1 +1,78 @@
- <a [routerLink]=" ['/login']" routerLinkActive="router-link-exact-active">Iniciar Sesion</a>
+
+<a [routerLink]=" ['/login']" routerLinkActive="router-link-exact-active">Iniciar Sesion</a>
+<!-- PROCESOS ELECTORALES -->
+<div class="grid">
+  <div class="col-12">
+    <h2 class="mb-3">Procesos Electorales</h2>
+    <div class="grid">
+      <div
+        class="col-12 md:col-4"
+        *ngFor="let proceso of procesos"
+        (click)="seleccionarProceso(proceso)"
+      >
+        <p-card
+          [header]="proceso.nombreProceso"
+          [subheader]="proceso.fechaFinProc + 'al'+ proceso.fechaFinProc"
+          class="hover:surface-200 cursor-pointer"
+          [ngClass]="{ 'bg-primary text-white': proceso === procesoSeleccionado }"
+        >
+          <ng-template pTemplate="content">
+            <p>Click para ver las listas inscritas</p>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- LISTAS INSCRITAS -->
+  <div class="col-12 mt-4" *ngIf="listas.length > 0">
+    <h3 class="mb-3">Listas Inscritas</h3>
+    <div class="grid">
+      <div
+        class="col-12 md:col-4"
+        *ngFor="let lista of listas"
+        (click)="seleccionarLista(lista)"
+      >
+        <p-card
+          [header]="lista.nombre"
+          class="hover:surface-200 cursor-pointer"
+          [ngClass]="{ 'bg-cyan-700 text-white': lista === listaSeleccionada }"
+        >
+          <ng-template pTemplate="content">
+            <p>Click para ver candidatos y propuestas</p>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- CANDIDATOS Y PROPUESTAS -->
+  <div class="col-12 mt-4" *ngIf="candidatos.length > 0 || propuestas.length > 0">
+    <h3 class="mb-3">Detalles de la Lista</h3>
+    <p-accordion [multiple]="true" [activeIndex]="[0,1]">
+      <p-accordionTab header="Candidatos" *ngIf="candidatos.length > 0">
+        <ul class="p-list">
+          <li
+            *ngFor="let c of candidatos"
+            class="p-2 border-bottom-1 surface-border"
+          >
+            <strong>{{ c.socio.persona.fullnombre }}</strong><br />
+            <small class="text-gray-500">{{ c.cargo }}</small>
+          </li>
+        </ul>
+      </p-accordionTab>
+
+      <p-accordionTab header="Propuestas" *ngIf="propuestas.length > 0">
+        <ul class="p-list">
+          <li
+            *ngFor="let p of propuestas"
+            class="p-2 border-bottom-1 surface-border"
+          >
+            {{ p.propuesta }}
+          </li>
+        </ul>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+</div>
+

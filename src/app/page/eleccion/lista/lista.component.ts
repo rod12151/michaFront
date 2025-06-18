@@ -10,6 +10,7 @@ import {ProcesoElectoralService} from "../../service/proceso-electoral.service";
 import {AssetService} from "../../service/asset.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {FileUpload} from "primeng/fileupload";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -37,7 +38,9 @@ export class ListaComponent implements OnInit {
   constructor(private listaService: ListaService,private messageService: MessageService,private confirmationService: ConfirmationService,
               private procesoElectoralService: ProcesoElectoralService,
               private assetService:AssetService,
-              private sanitizer: DomSanitizer) { }
+              private sanitizer: DomSanitizer,
+              private route:Router
+            ) { }
 
   getAll(){
     this.listaService.getAll().subscribe(
@@ -229,4 +232,16 @@ export class ListaComponent implements OnInit {
       return null;
     }
   })
+
+  redirect(id:number){
+    if(id!=undefined){
+      console.log(`eleccion/lista/propuesta/${id}`)
+      this.route.navigate([`eleccion/lista/propuesta`])
+      
+
+    }
+
+  }
+
+
 }

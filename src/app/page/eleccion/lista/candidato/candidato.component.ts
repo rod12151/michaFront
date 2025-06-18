@@ -151,11 +151,12 @@ selectedValue: string = '';
 
 
   save() {
+    this.candidato.cargo=this.selectedValue;
 
     this.candidatoService.save(this.candidato, this.lista.id).subscribe(
       (result: any) => {
         let candidato = result as Candidato;
-        candidato.cargo=this.selectedValue;
+        
         console.log(candidato)
         this.validarProceso(candidato);
         this.messageService.add({ severity: 'success', summary: "Resultado", detail: "Se ha creado el Candidato correctamente" });

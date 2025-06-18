@@ -11,6 +11,11 @@
           [routerLink]="['/eleccion/lista/candidato', listaESelected.id]"
           routerLinkActive="router-link-exact-active" [disabled]="!listaESelected?.id">
         </button>
+        <button pButton pRipple label="Ver Propuestas" icon="pi pi-list" class="mr-2"
+          [routerLink]="['/eleccion/lista/propuesta', listaESelected.id]"
+          routerLinkActive="router-link-exact-active" [disabled]="!listaESelected?.id"
+          style="background-color: rgb(12, 70, 67); border: none; color: white;">
+        </button>
       </ng-template>
     </p-toolbar>
 

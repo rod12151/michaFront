@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Propuesta } from '../interface/propuesta.interface';
 import { ProcesoElectoral } from '../interface/procesoElectoral.interface';
+import { Lista } from '../interface/lista.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,24 +17,12 @@ export class PublicServiceService {
     listaProcesos():Observable<ProcesoElectoral[]>{
       return this.http.get<ProcesoElectoral[]>(`${this.baseUrl}/procesos`);
     }
-    
-    ProcesoPorId(id: number):Observable<ProcesoElectoral>{
-      return this.http.get<ProcesoElectoral>(`${this.baseUrl}/procesos/${id}`);
+    ListaPorIdProceso(idProceso:number):Observable<Lista[]>{
+      return this.http.get<Lista[]>(`${this.baseUrl}/listas/${idProceso}`)
     }
-  
-    getByListaId(idLista: number): Observable<Propuesta[]> {
-      return this.http.get<Propuesta[]>(`${this.baseUrl}/procesos`);
+    /*/lista/{idLista}*/
+    lista(idLista:number):Observable<Lista>{
+      return this.http.get<Lista>(`${this.baseUrl}/lista/${idLista}`)
     }
-  
-    save(idLista: number, propuesta: Propuesta): Observable<Propuesta> {
-      return this.http.post<Propuesta>(`${this.baseUrl}/crear/${idLista}`, propuesta);
-    }
-  
-    editar(idPropuesta: number,propuesta:Propuesta):Observable<Propuesta>{
-      return this.http.put<Propuesta>(`${this.baseUrl}/actualizar/${idPropuesta}`,propuesta);
-    }
-  
-    delete(id: number): Observable<void> {
-      return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
-    }
+   
 }

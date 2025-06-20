@@ -7,11 +7,11 @@
         <button pButton pRipple label="Nuevo" routerLink="nuevo"  icon="pi pi-plus" class="p-button-success mr-2" ></button>
       </ng-template>
     </p-toolbar>
-    <p-table [value]="socios" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+    <p-table [value]="socios" [paginator]="true" [rows]="8" [showCurrentPageReport]="true"
              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
       <ng-template pTemplate="header">
         <tr>
-          <th>ID</th>
+         
           <th>Nombre</th>
           <th>Apellido Paterno</th>
           <th>Apellido Materno</th>
@@ -26,7 +26,7 @@
       </ng-template>
       <ng-template pTemplate="body" let-socio>
         <tr [pSelectableRow]="socio">
-          <td>{{socio.id}}</td>
+          
           <td>{{socio.persona.nombre}}</td>
           <td>{{socio.persona.apellidoPaterno}}</td>
           <td>{{socio.persona.apellidoMaterno}}</td>

@@ -13,10 +13,12 @@ import { InfoComponent } from './page/info/info.component';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { CardModule } from 'primeng/card';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
     InfoComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -25,11 +27,12 @@ import { CardModule } from 'primeng/card';
     AccordionModule,
     FormsModule,
     DropdownModule,
-    CardModule
+    CardModule,
+    HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor}
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,multi:true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi:true}
   ],
   bootstrap: [AppComponent]
 })

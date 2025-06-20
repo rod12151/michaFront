@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { CardModule } from 'primeng/card';
 import { HttpClientModule } from '@angular/common/http';
+import { GalleriaModule } from 'primeng/galleria';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     DropdownModule,
     CardModule,
-    HttpClientModule
+    HttpClientModule,
+    GalleriaModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,multi:true },

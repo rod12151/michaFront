@@ -7,6 +7,7 @@ import { PublicServiceService } from '../service/public-service.service';
 import { PropuestaServiceService } from '../service/propuesta-service.service';
 
 
+
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
@@ -19,13 +20,25 @@ export class InfoComponent implements OnInit {
   propuestas: Propuesta[] = [];
 
   procesoSeleccionado: any = null;
-  listaSeleccionada: any = null;
+  listaSeleccionada: Lista = null;
 
   constructor( 
     private publicService:PublicServiceService,
     private propuestaService:PropuestaServiceService
     
   ) { }
+  images:string[] =[];
+
+    responsiveOptions: any[] = [
+        {
+            breakpoint: '1300px',
+            numVisible: 4
+        },
+        {
+            breakpoint: '575px',
+            numVisible: 1
+        }
+    ];
 
   ngOnInit(): void {
     this.cargarProcesos();
@@ -51,6 +64,7 @@ export class InfoComponent implements OnInit {
     console.log("la fecha");
     console.log(proceso.fechaIniProc)
     this.cargarListasPorIdProceso(proceso.id);
+    this.listaSeleccionada = null;
   }
 
   cargarListasPorIdProceso(idProceso: number){

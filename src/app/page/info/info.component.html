@@ -1,6 +1,55 @@
-<a [routerLink]=" ['/login']" routerLinkActive="router-link-exact-active">Iniciar Sesion</a>
+
+<!--header-->
+<header class="header">
+  <div class="logo">
+    <img  src="../../../assets/components/images/logogrande.jpg"  alt="">
+  </div>
+  <nav class="nav">
+    <a [routerLink]=" ['/login']" class="nav-link">Iniciar Sesion</a>
+    <a (click)="scrollToIfReady('info2')" class="nav-link">Procesos</a>
+    <a href="#" class="nav-link">Listas</a>
+    <a href="#" class="nav-link">Candidatos</a>
+  </nav>
+</header>
+
+
+<!--carrocel-->
+<!--<div class="slider-container">  
+  <img
+    class="slider-item"
+    src="../../../assets/img/image1.jpg"
+  />
+  <img
+    class="slider-item"
+    src="../../../assets/img/image2.jpg"
+  />
+  <img
+    class="slider-item"
+    src="../../../assets/img/image3.jpg"
+  />
+</div> -->
+
+
+<div class="slider-wrapper">
+  <button class="nav-button prev-button" (click)="moveSlide(-1)">&#10094;</button>
+
+  <div class="slider-container" #slider>
+    <img class="slider-item" src="../../../assets/img/image1.jpg" />
+    <img class="slider-item" src="../../../assets/img/image2.jpg" />
+    <img class="slider-item" src="../../../assets/img/image3.jpg" />
+  </div>
+
+  <button class="nav-button next-button" (click)="moveSlide(1)">&#10095;</button>
+</div>
+
+
+
+
+
+
+
 <!-- PROCESOS ELECTORALES -->
-<div class="info2">
+<div class="info2" id="info2">
 
 
   <div class="info-wrapper fade-in">
@@ -16,14 +65,14 @@
 
 
 
-            <div class="custom-card" (click)="seleccionarProceso(proceso)"
+            <div class="custom-card" (click)="seleccionarProceso(proceso);scrollToIfReady('list')"
               [ngClass]="{
                 'seleccionado': proceso === procesoSeleccionado,
                 'opaco': procesoSeleccionado && proceso !== procesoSeleccionado}">
               <div class="card-content">
                 <h3 class="card-title">{{ proceso.nombreProceso }}</h3>
-                <p class="card-subtitle">{{ formatearFecha(proceso.fechaFinProc) }}</p>
-                <p class="card-text">Click para ver las listas inscritas</p>
+                <p class="card-subtitle">{{ formatearFecha(proceso.fechaFinProc)+''}}</p>
+                <p  class="card-text">Click para ver las listas inscritas</p>
               </div>
             </div>
 
@@ -34,7 +83,7 @@
 
       <!-- LISTAS INSCRITAS -->
 
-      <div class="col-12 mt-4" *ngIf="listas.length > 0">
+      <div class="col-12 mt-4" *ngIf="listas.length > 0" id="list">
         <div *ngFor="let lista of listas">
           <div class="card">
             <p-galleria [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '640px' }"
@@ -54,12 +103,13 @@
 
 
         <h3 class="mb-3">Listas Inscritas</h3>
-        <div class="grid">
-          <div class="col-12 md:col-4" *ngFor="let lista of listas" (click)="seleccionarLista(lista)">
+        <div class="grid" >
+          <div class="col-12 md:col-4" *ngFor="let lista of listas" (click)="seleccionarLista(lista);scrollToIfReady('cand')">
             <p-card [header]="lista.nombre" class="hover:surface-200 cursor-pointer"
               [ngClass]="{ 'bg-cyan-700 text-white': lista === listaSeleccionada }">
               <ng-template pTemplate="content">
-                <p>Click para ver candidatos y propuestas</p>
+                
+                <p >Click para ver candidatos y propuestas</p>
               </ng-template>
             </p-card>
           </div>
@@ -67,7 +117,7 @@
       </div>
 
       <!-- CANDIDATOS Y PROPUESTAS -->
-      <div *ngIf="listaSeleccionada!=null">
+      <div *ngIf="listaSeleccionada!=null" >
 
 
         <div class="col-12 mt-4" *ngIf="candidatos.length > 0 || propuestas.length > 0">
@@ -75,12 +125,13 @@
           <p-accordion [multiple]="true" [activeIndex]="[0,1]">
             <p-accordionTab header="Candidatos" *ngIf="candidatos.length > 0">
               <ul class="p-list">
-                <li *ngFor="let c of candidatos" class="p-2 border-bottom-1 surface-border">
+                <li *ngFor="let c of candidatos" class="p-2 border-bottom-1 surface-border" >
                   <strong>{{ c.socio.persona.fullnombre }}</strong><br />
                   <small class="text-gray-500">{{ c.cargo }}</small>
                 </li>
               </ul>
             </p-accordionTab>
+            <a id="cand"></a>
 
             <p-accordionTab header="Propuestas" *ngIf="propuestas.length > 0">
               <ul class="p-list">

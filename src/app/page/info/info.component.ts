@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Lista } from '../interface/lista.interface';
 import { Candidato } from '../interface/candidato.interface';
 import { Propuesta } from '../interface/propuesta.interface';
 import { ProcesoElectoral } from '../interface/procesoElectoral.interface';
 import { PublicServiceService } from '../service/public-service.service';
 import { PropuestaServiceService } from '../service/propuesta-service.service';
+import { ViewportScroller } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -24,7 +26,10 @@ export class InfoComponent implements OnInit {
 
   constructor( 
     private publicService:PublicServiceService,
-    private propuestaService:PropuestaServiceService
+    private propuestaService:PropuestaServiceService,
+    private viewportScroller: ViewportScroller,
+    private router: Router,
+    private route: ActivatedRoute,
     
   ) { }
   images:string[] =[];
@@ -42,6 +47,9 @@ export class InfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarProcesos();
+    setInterval(() => {
+    this.moveSlide(1);
+  }, 3000);
   }
 
   cargarProcesos(): void {
@@ -109,6 +117,39 @@ export class InfoComponent implements OnInit {
   const anio = date.getFullYear();
 
   return `${dia}/${mes}/${anio}`;
+}
+//carrosel
+@ViewChild('slider', { static: false }) slider!: ElementRef<HTMLDivElement>;
+  currentIndex: number = 0;
+
+  moveSlide(direction: number): void {
+  const sliderElement = this.slider.nativeElement;
+  const slideWidth = sliderElement.clientWidth;
+  const totalSlides = sliderElement.children.length;
+
+  this.currentIndex += direction;
+
+  // Carrusel circular
+  if (this.currentIndex < 0) {
+    this.currentIndex = totalSlides - 1;
+  } else if (this.currentIndex >= totalSlides) {
+    this.currentIndex = 0;
+  }
+
+  sliderElement.scrollTo({
+    left: slideWidth * this.currentIndex,
+    behavior: 'smooth'
+  });
+}
+
+//navegacion
+scrollToIfReady(id: string) {
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, 100); // puedes probar con 100 ms si 0 no funciona
 }
 
 }

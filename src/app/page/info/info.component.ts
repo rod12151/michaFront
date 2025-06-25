@@ -109,7 +109,7 @@ export class InfoComponent implements OnInit {
 
   
   formatearFecha(fecha: Date | string): string {
-  if (!fecha) return 'Sin fecha';
+  if (!fecha) return 'Proceso no iniciado';
 
   const date = new Date(fecha);
   const dia = String(date.getDate()).padStart(2, '0');

@@ -63,7 +63,8 @@ html {
 .info2{
     margin: 20px;
     padding: 50px;
-}.custom-card {
+}
+.custom-card {
   display: flex;
   flex-direction: column;
   background-color: #006633;
@@ -129,12 +130,61 @@ html {
 .opaco {
   opacity: 0.5;
 }
-.p-card {
-    background: #e9b26b;
-    color: #1e225d;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    border-radius: 3px;
+
+.custom-card2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 12px;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  padding: 1rem;
+  background: #239243;
 }
+
+.custom-card2:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  scale: 1.05;
+}
+
+
+.card-image2 {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+
+.cardtitle2{
+  color: #ffffff;
+  font-size:1.3rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-button2 {
+  display: inline-block;
+  background-color: #006633; /* Indigo-600 */
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  margin-top: 0.75rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+.card-button2:hover {
+  background-color: #006633; /* Indigo-700 */
+}
+
+
 
 /*estilos carrocel*/
 /*.slider-container {
